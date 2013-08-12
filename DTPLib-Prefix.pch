@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DTPLib' target in the 'DTPLib' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
