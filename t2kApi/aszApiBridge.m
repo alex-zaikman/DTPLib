@@ -11,7 +11,7 @@
 
 @interface aszApiBridge() <UIWebViewDelegate>
 
-#define T2KAPI_URL @"http://cto.timetoknow.com/lms/js/libs/t2k/t2k.html"  
+#define T2KAPI_URL @"http://cto.timetoknow.com/lms/js/libs/t2k/t2k.html"
 
 -(id) init;
 
@@ -46,21 +46,12 @@ static aszApiBridge *the = nil;
     
     self = [super init];
     if(self){
-    
         //init cordovat
-        
-        
         _cdvbrain = [CDVViewController new];
-        
-        
         _cdvbrain.customDelegate=self;
-        
         _cdvbrain.wwwFolderName = @"";
         _cdvbrain.startPage = T2KAPI_URL;
-        
         _cdvbrain.view.frame =CGRectMake(0,0, 900, 900);
-    
-        
     }
     return self;
 }
@@ -104,7 +95,6 @@ static aszApiBridge *the = nil;
     [command appendString:@");"];
     
     return  [self.cdvbrain.webView stringByEvaluatingJavaScriptFromString:command];
-    
 }
 
 

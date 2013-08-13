@@ -27,7 +27,5 @@
 
 +(void) getLessonContent:(NSString*)courseId forLesson:(NSString*)lessonId  OnSuccess:(void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure;
 
-
 @end
-
 #endif

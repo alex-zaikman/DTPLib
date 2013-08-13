@@ -82,8 +82,6 @@
     
     NSMutableString *getVars=[[NSMutableString alloc]init];
     
-    //  [getVars appendString:@"?"];
-    
     NSEnumerator *it = [vars keyEnumerator];
     
     for(NSString *aKey in it) {

@@ -16,9 +16,6 @@
 
 @interface aszDlBridge : CDVViewController  
 
-
-//@property (nonatomic,assign) int indexCid;
-
 -(id)initCallOnLoadded:(void (^)(void))callme ;
 
 -(id)initInit:(NSString*)initdata andPlay:(NSString*)playdata dlCallbackDelegate:(id<aszDlCallbackDelegate>)dldelegate;

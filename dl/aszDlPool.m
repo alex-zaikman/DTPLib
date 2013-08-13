@@ -16,12 +16,8 @@
 
 @property (nonatomic,strong) NSString *iniData;
 
-
-
 @property (strong,nonatomic) id<aszDlCallbackDelegate> dldelegate;
 
-//@property (strong,nonatomic) void (^allLoadded)(void);
-//@property (strong,nonatomic) void (^callOnallLoadded)(void);
 @end
 
 
@@ -35,7 +31,6 @@
         _iniData = data;
         _cache = [NSMutableDictionary dictionary];
         _dldelegate=dldelegate;
-        
         
         __block NSMutableDictionary *tmpCashe = _cache;
         __block NSString *idata=data;
@@ -52,7 +47,6 @@
 
 -(void)playWithDataDictionary:(NSDictionary*)pData{
   
-
     //clean cashe
     NSArray *casheKyes = [self.cache allKeys];
     
@@ -61,8 +55,6 @@
             aszDlBridge *tmp = [self.cache objectForKey:key];
             [tmp releaseLock];
             [self.cache removeObjectForKey:key];
-          //  tmp=nil;
-            
         }
     }
     
@@ -75,16 +67,13 @@
         if(![tmpCashe objectForKey:key]){
             [tmpCashe setValue:[[aszDlBridge alloc]initInit:idata andPlay:obj dlCallbackDelegate:blockDelegate ]  forKey:key];
         }
-        
     }];
 
 }
 
 
 -(id)getDlForKey:(NSString*)key{
-    
     return [self.cache objectForKey:key];
-
 }
 
 -(uint)getCurrentPoolSize{
@@ -95,9 +84,7 @@
 -(void)clearPool{
     
     [self.cache enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        
         [obj viewDidUnload];
-        
     }];
     
     [self.cache removeAllObjects];
@@ -105,13 +92,8 @@
 
 
 -(void)dealloc{
-    
     [self clearPool];
-    
 }
-
-
-
 
 @end
 

@@ -12,9 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "aszDlBridge.h"
 
-
 @interface aszDlPool : NSObject
-
 
 -(id)initUseInitData:(NSString*)data playWithPlayDataDictionarry:(NSDictionary*)pData dlCallbackDelegate:(id<aszDlCallbackDelegate>)dldelegate;
 

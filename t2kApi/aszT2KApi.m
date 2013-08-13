@@ -51,10 +51,6 @@
         [fetchCommand appendString:@"');" ];
         
         NSString *param = [webView stringByEvaluatingJavaScriptFromString:fetchCommand];
-    
-    
-
-        
         
         // Call the given selector
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -67,7 +63,6 @@
     // Accept this location change
     return YES;
     
-    
 }
 
 
@@ -75,7 +70,6 @@
 +(void) loadOnSuccess:(void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure{
     
     aszApiBridge *instance = [aszApiBridge the];
-
     
     static aszT2KApi  *me;
     if(!me){
@@ -89,15 +83,13 @@
      NSArray *param=@[@"'html5'"];
     
     [instance callJs:@"T2K.api.load" withParams:param OnSucsses:@"aok:" OnFaliure:@"ono:"];
-    
-    
-    
+
 }
+
 
 +(void) initOnSuccess:(void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure{
     
     aszApiBridge *instance = [aszApiBridge the];
-    
     
     static aszT2KApi  *me;
     if(!me){
@@ -111,8 +103,6 @@
     [instance callJs:@"T2K.server.initData" withParams:nil OnSucsses:@"aok:" OnFaliure:@"ono:"];
     
 }
-
-
 
 
 +(void) logInWithUser:(NSString*)user andPassword:(NSString*)pass OnSuccess:(void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure
@@ -157,7 +147,6 @@
 +(void) getStudyClassesOnSuccess:(void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure
 {
     
-    
     static aszT2KApi  *me;
     if(!me){
         me = [[aszT2KApi alloc]init];
@@ -201,7 +190,5 @@
     
     [[aszApiBridge the] callJs:@"T2K.content.getLessonContent"  withParams:param  OnSucsses:@"aok:" OnFaliure:@"ono:"];
 }
-
-
 
 @end
