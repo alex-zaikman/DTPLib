@@ -31,19 +31,22 @@
 
 @property (strong,nonatomic) id<aszDlCallbackDelegate> dldelegate;
 
--(void)precheck;
 -(void)fsuccess:(NSString*)msg;
 -(void)ffailure:(NSString*)msg;
 -(void)loadded:(NSString*)msg;
 
 -(NSString*)createCommandForAction:(NSString*)action withData:(NSString*)data;
 
-
 -(void)dlapi:(NSString*)msg;
+
 @end
+
+//=====================Impl======================================================================
 
 @implementation aszDlBridge
 
+
+//js callback handler
 -(void)dlapi:(NSString*)msg{
 
     NSDictionary *config = [aszUtils jsonToDictionarry:msg];
@@ -58,12 +61,11 @@
                 [self.webView stringByEvaluatingJavaScriptFromString:failure ];
     }
     
-     
 }
 
--(BOOL)didDlLoad{
-    return self.isLoadded;
-}
+
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 
 -(id)initInit:(NSString*)initdata OnLoadded:(void (^)(void))callme  dlCallbackDelegate:(id<aszDlCallbackDelegate>)dldelegate{
     
@@ -73,10 +75,12 @@
         
         super.customDelegate = self;
         super.useSplashScreen = NO;
+       
+        _playData=nil;
         _dldelegate=dldelegate;
         _initializeData=initdata;
-        _playData=nil;
         _loaddedCallBack=callme;
+        
         _initandplay=YES;
         _isLoadded = NO;
         
@@ -94,11 +98,14 @@
     self = [super initWithDelegate:self];
     
     if(self){
+        
         super.useSplashScreen = NO;
         super.customDelegate = self;
+        
         _initializeData=initdata;
         _playData=playdata;
         _dldelegate=dldelegate;
+        
         _initandplay=YES;
         _isLoadded = NO;
         
@@ -118,10 +125,12 @@
     if(self){
         super.useSplashScreen = NO;
         super.customDelegate = self;
+        
         _initializeData=nil;
         _playData=nil;
-        _initandplay=NO;
         _loaddedCallBack=callme;
+        
+        _initandplay=NO;
         _isLoadded = NO;
         
         super.wwwFolderName = @"";
@@ -132,6 +141,14 @@
     return self;
 }
 
+
+
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
+
+-(BOOL)didDlLoad{
+    return self.isLoadded;
+}
+
 -(UIView*) getCDVView{
     return super.view;
 }
@@ -139,6 +156,7 @@
 -(void)setFrame:(CGRect)rect{
     super.view.frame = rect;
 }
+
 
 -(void)fsuccess:(NSString*)msg{
     
@@ -152,9 +170,6 @@
         self.pfaliure(msg);
 }
 
--(void)precheck{
-//if needed 
-}
 
 -(NSString*)createCommandForAction:(NSString*)action withData:(NSString*)data{
    
@@ -171,8 +186,6 @@
 
 
 -(void)initPlayer:(NSString*)initData OnSuccess: (void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure{
-
-    [self precheck];
     
     self.psuccess=success;
     self.pfaliure=faliure;
@@ -182,8 +195,6 @@
 }
 
 -(void)playSequence:(NSString*)seqData OnSuccess: (void (^)(NSString *))success  OnFaliure:(void (^)(NSString *))faliure{
-    
-    [self precheck];
     
     self.psuccess=success;
     self.pfaliure=faliure;
@@ -229,19 +240,17 @@
         #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:NSSelectorFromString(function) withObject:param];
         
-        
         // Cancel the location change
         return NO; 
     }
     
     // Accept this location change
     return YES;
-    
-    
+
 }
 
+
 -(void)loadded:(NSString*)msg{
-    
     
     self.isLoadded = YES;
     __block aszDlBridge *this=self;
@@ -252,7 +261,6 @@
             
             if(this.playData){
                 [this playSequence:this.playData OnSuccess:^(NSString *msg) {
-                    
                     
                     if(this.loaddedCallBack ){
                         this.loaddedCallBack();

@@ -90,6 +90,14 @@
     [self.cache removeAllObjects];
 }
 
+-(NSArray*)allKeys{
+    return [self.cache allKeys];
+}
+
+-(NSArray*)allValues{
+    return [self.cache allValues];
+}
+
 
 -(void)dealloc{
     [self clearPool];

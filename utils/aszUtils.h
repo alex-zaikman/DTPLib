@@ -21,16 +21,17 @@
 
 +(NSString*)intToString:(int)i;
 
+//convert json string to dictionary
 +(NSDictionary*)jsonToDictionarry:(NSString*)json;
-
+//convert json string to array
 +(NSArray*)jsonToArray:(NSString*)json;
-
-+(NSString*)getDomain;
 
 +(NSString*) decodeFromPercentEscapeString:(NSString *)string ;
 
+//create url request with params
 +(NSURLRequest*)requestWithUrl:(NSString*)url usingMethod:(NSString*)method withUrlParams: (NSDictionary*)urlVars andBodyData:(NSString*)bodyData;
 
+//create param string for GET request
 +(NSString*)paramsToString:(NSDictionary*)vars;
 
 
